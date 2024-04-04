@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema(
   {
-    doctor: {
+    hospital: {
       type: mongoose.Types.ObjectId,
-      ref: "Doctor",
+      ref: "Hospital",
       required: true,
     },
     user: {
@@ -13,10 +13,6 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     ticketPrice: { type: String, required: true },
-    appointmentDate: {
-      type: Date,
-      required: true,
-    },
     status: {
       type: String,
       enum: ["pending", "approved", "cancelled"],
@@ -29,5 +25,13 @@ const bookingSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+bookingSchema.pre(/^find/, function(next){
+  this.populate('user').populate({
+    path:'hospital',
+    select:'name'
+  });
+  next();
+});
 
 export default mongoose.model("Booking", bookingSchema);

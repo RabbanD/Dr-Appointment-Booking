@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { css } from '@emotion/react';
 import { RingLoader } from 'react-spinners';
 import background from '../assets/images/hero-bg.png';
