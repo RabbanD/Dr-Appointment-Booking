@@ -21,10 +21,6 @@ const navLinks = [
     path:'/contact',
     display:"Contact"
   },
-  {
-    path:'/schemes',
-    display:"Government Schemes"
-  },
   
 ];
 

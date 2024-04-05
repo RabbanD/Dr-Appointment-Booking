@@ -8,7 +8,6 @@ import HospitalsDetails from '../pages/Hospitals/HospitalDetails'
 import MyAccount from '../Dashboard/user-account/MyAccount'
 import Dashboard from '../Dashboard/hospital-account/Dashboard'
 import CheckoutSuccess from '../pages/CheckoutSuccess'
-import Schemes from '../pages/Schemes'
 
 import {Routes, Route} from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute'
@@ -25,8 +24,6 @@ const Routers = () => {
     <Route path="/services" element={<Services/>} />
     <Route path="/checkout-success" element={<CheckoutSuccess/>} />
 
-
-    <Route path="/schemes" element={<ProtectedRoute allowedRoles={["patient"]}><Schemes/></ProtectedRoute>}/>
     <Route path="/users/profile/me" element={<ProtectedRoute allowedRoles={["patient"]}><MyAccount/></ProtectedRoute>}/>
     <Route path="/hospitals/profile/me" element={<ProtectedRoute allowedRoles={["hospital"]}><Dashboard/></ProtectedRoute>}/>
     

@@ -1,25 +1,21 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const SchemeSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  name: { type: String, required: true },
-  phone: { type: Number },
-  photo: { type: String },
-  role: {
-    type: String,
-    enum: ["patient", "admin"],
-    default: "patient",
-  },
-  state: {type: String},
-  district: {type: String},
-  taluka: {type: String},
-  gender: { type: String, enum: ["male", "female", "other"] },
-  bloodType: { type: String },
-  disease: {type: String, enum: ["covid19", "tuberculosis", "poliomyelitis"] },
-  annualIncome: {type: String, enum: ["1lakh", "3to4", "4to7"]},
-  rationcard: {type:String, enum:["orange","yellow","white"]},
-  appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+  schemeName: { type: String, required: true },
+  rationCardColor: { type: String, required: true },
+  state: { type: String, required: true },
+  districts: [{ type: String }],
+  hospitals: [{ type: mongoose.Types.ObjectId, ref: 'Hospital' }]
 });
 
-export default mongoose.model("Scheme", SchemeSchema);
+export default mongoose.model('Scheme', SchemeSchema);
+
+const MahatmaYojana = new Scheme({
+  schemeName: 'MahatmaYojana',
+  rationCardColor: 'any',
+  state: 'Maharashtra',
+  districts: ['Amaravati', 'Aurangabad', 'Akola', 'Buldhana', 'Hingoli', 'Beed', 'Jalna', 'Latur', 'Nanded', 'Osmanabad', 'Wardha', 'Parbhani', 'Yavatmal', 'Washim'],
+  hospitals: [yashodharaHospitalId] // Assuming yashodharaHospitalId is the ObjectId of the 'Yashodhara' hospital
+});
+
+MahatmaYojana.save();
